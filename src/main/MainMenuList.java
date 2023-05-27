@@ -1,3 +1,5 @@
+package main;
+
 import java.util.ArrayList;
 
 /**
@@ -13,6 +15,8 @@ public class MainMenuList {
         mainMenuArr.add(new MainMenu("ForzenCustard", "매장에서 신선하게 만드는 아이스크림"));
         mainMenuArr.add(new MainMenu("Drinks", "매장에서 직접 만드는 음료"));
         mainMenuArr.add(new MainMenu("Beer", "뉴욕 브루클린 브루어리에서 양조한 맥주"));
+
+        System.out.println("메뉴를 선택하세요");
 
         for(int i = 0; i < mainMenuArr.size(); i++){
             System.out.println((i+1) + " " + mainMenuArr.get(i).name + " | " + mainMenuArr.get(i).description);

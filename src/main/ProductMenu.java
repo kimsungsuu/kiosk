@@ -1,3 +1,5 @@
+package main;
+
 public class ProductMenu {
     //- 상품 클래스는 이름, 가격, 설명 필드를 가지는 클래스로 만들어주세요.
     public String name;
@@ -10,4 +12,6 @@ public class ProductMenu {
         this.price = price;
         this.description = description;
     }
+
+    public ProductMenu(){};
 }
