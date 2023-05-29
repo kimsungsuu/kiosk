@@ -2,7 +2,7 @@ package main;
 
 import java.util.ArrayList;
 
-public class Dessert {
+public class Dessert extends AbstractProduct{
     public ArrayList<ProductMenu> dessertArr;
 
     public void detailMenu(){

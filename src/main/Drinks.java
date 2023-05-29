@@ -2,7 +2,7 @@ package main;
 
 import java.util.ArrayList;
 
-public class Drinks {
+public class Drinks extends AbstractProduct{
     // 멤버 필드로 선언하여 외부에서 접근 가능.
     public ArrayList<ProductMenu> drinksArr;
 

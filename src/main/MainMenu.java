@@ -1,8 +1,6 @@
 package main;
 
 import java.util.Scanner;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * 메인 메뉴에서는 사용자가 상품을 선택하는 로직만을 구현합니다.
@@ -40,12 +38,16 @@ public class MainMenu {
     static OrderList orderList;
 
     public static void main(String[] args) {
+
         MainMenu T = new MainMenu();
         Scanner in = new Scanner(System.in);
 
+        // 가게 명 설정
+        // 메인 메뉴에 출력될 이름 설정 ex ) "name에 오신걸 환영합니다."
+        String menuName = "롯데리아";
+
         // 주문 상품을 담을 장바구니 역할인 orderList 인스턴스화
         orderList = new OrderList();
-
 
         // 총 Order 수(대기번호수)
         int totalOrderCnt = 0;
@@ -56,7 +58,7 @@ public class MainMenu {
             // 메인 메뉴리스트를 출력합니다.
             // 메인 메뉴가 변경될 때마다 main.MainMenu 클래스를 변경되지 않도록 클래스를 분리하여 결합도를 낮춥니다.
             MainMenuList mainMenuList = new MainMenuList();
-            mainMenuList.mainMenuList();
+            mainMenuList.mainMenuList(menuName);
 
             // 메인 메뉴판 초이스 버거, 디저트, 음료, 치킨 중...
             int choiceMenu = in.nextInt();
@@ -64,16 +66,20 @@ public class MainMenu {
             // 화면 전환 효과를 위해 공백을 입력합니다.
             T.clearScreen();
 
+            // 상세 메뉴를 추상화한 Product
+            // Product 객체를 통해 case 문마다 객체를 갈아끼워주지 않아도 됨.
+            Product product;
+
             switch (choiceMenu) {
                 case 1:
-                    Buger buger = new Buger();
+                    product = new Product(new Buger());
 
                     System.out.println("롯데리아에 오신걸 환영합니다.");
                     System.out.println("아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.");
                     System.out.println();
 
                     // 상세 상품 메뉴를 출력합니다.
-                    buger.detailMenu();
+                    product.detailMenu();
 
                     // 상세 상품 선택
                     choiceDetailMenu = in.nextInt();
@@ -81,11 +87,11 @@ public class MainMenu {
                     T.clearScreen();
 
                     // 메뉴를 선택합니다.
-                    choiceProduct = buger.choiceProduct(choiceDetailMenu);
+                    choiceProduct = product.choiceProduct(choiceDetailMenu);
 
                     // 장바구니에 담을지 말지 결정합니다.
                     // 1. 확인   2. 취소
-                    int orderOrCancel = in.nextInt();
+                    orderOrCancel = in.nextInt();
 
                     T.clearScreen();
 
@@ -95,103 +101,79 @@ public class MainMenu {
                         // 선택한 상품 추가
                         addProductCnt++;
                         orderList.addProduct(choiceProduct, addProductCnt);
-                    } // case 1 end
+                    } // case Buger end
                     break;
                 case 2:
-                    Dessert dessert = new Dessert();
+                    product = new Product(new Dessert());
 
                     System.out.println("롯데리아에 오신걸 환영합니다.");
                     System.out.println("아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.");
                     System.out.println();
 
-                    // 상세 상품 메뉴를 출력합니다.
-                    dessert.detailMenu();
+                    product.detailMenu();
 
-                    // 상세 상품 선택
                     choiceDetailMenu = in.nextInt();
 
                     T.clearScreen();
 
-                    // 메뉴를 선택합니다.
-                    choiceProduct = dessert.choiceProduct(choiceDetailMenu);
+                    choiceProduct = product.choiceProduct(choiceDetailMenu);
 
-                    // 장바구니에 담을지 말지 결정합니다.
-                    // 1. 확인   2. 취소
                     orderOrCancel = in.nextInt();
 
                     T.clearScreen();
 
-                    // 확인 버튼 클릭 시 장바구니에 상품 메뉴가 담긴다.
-                    // 취소 버튼 클릭 시 장바구니에 상품이 담기지 않고 메인 메뉴로 돌아간다.
                     if (orderOrCancel == 1) {
-                        // 선택한 상품 추가
                         addProductCnt++;
                         orderList.addProduct(choiceProduct, addProductCnt);
-                    } // case 2 end
+                    } // case Dessert end
                     break;
                 case 3:
-                    Drinks drinks = new Drinks();
+                    product = new Product(new Drinks());
 
                     System.out.println("롯데리아에 오신걸 환영합니다.");
                     System.out.println("아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.");
                     System.out.println();
 
-                    // 상세 상품 메뉴를 출력합니다.
-                    drinks.detailMenu();
+                    product.detailMenu();
 
-                    // 상세 상품 선택
                     choiceDetailMenu = in.nextInt();
 
                     T.clearScreen();
 
-                    // 메뉴를 선택합니다.
-                    choiceProduct = drinks.choiceProduct(choiceDetailMenu);
+                    choiceProduct = product.choiceProduct(choiceDetailMenu);
 
-                    // 장바구니에 담을지 말지 결정합니다.
-                    // 1. 확인   2. 취소
                     orderOrCancel = in.nextInt();
 
                     T.clearScreen();
 
-                    // 확인 버튼 클릭 시 장바구니에 상품 메뉴가 담긴다.
-                    // 취소 버튼 클릭 시 장바구니에 상품이 담기지 않고 메인 메뉴로 돌아간다.
                     if (orderOrCancel == 1) {
-                        // 선택한 상품 추가
                         addProductCnt++;
                         orderList.addProduct(choiceProduct, addProductCnt);
-                    } // case 3 end
+                    } // case Drinks end
                     break;
                 case 4:
-                    Chicken chicken = new Chicken();
+                    product = new Product(new Chicken());
 
                     System.out.println("롯데리아에 오신걸 환영합니다.");
                     System.out.println("아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.");
                     System.out.println();
 
-                    // 상세 상품 메뉴를 출력합니다.
-                    chicken.detailMenu();
+                    product.detailMenu();
 
-                    // 상세 상품 선택
                     choiceDetailMenu = in.nextInt();
 
                     T.clearScreen();
 
-                    // 메뉴를 선택합니다.
-                    choiceProduct = chicken.choiceProduct(choiceDetailMenu);
+                    choiceProduct = product.choiceProduct(choiceDetailMenu);
 
-                    // 장바구니에 담을지 말지 결정합니다.
-                    // 1. 확인   2. 취소
                     orderOrCancel = in.nextInt();
 
                     T.clearScreen();
 
-                    // 확인 버튼 클릭 시 장바구니에 상품 메뉴가 담긴다.
-                    // 취소 버튼 클릭 시 장바구니에 상품이 담기지 않고 메인 메뉴로 돌아간다.
                     if (orderOrCancel == 1) {
-                        // 선택한 상품 추가
                         addProductCnt++;
                         orderList.addProduct(choiceProduct, addProductCnt);
-                    } // case 4 end
+                    } // case chicken end
                     break;
                 case 5: // 최종 주문
                     // 최종 주문 (나중에 5번 입력했을 시로 변경되어야함 임시적으로 테스트해보기 위해 선언)

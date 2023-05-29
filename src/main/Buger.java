@@ -2,12 +2,13 @@ package main;
 
 import java.util.ArrayList;
 
-public class Buger{
+public class Buger extends AbstractProduct{
 
     // 멤버 필드로 선언하여 외부에서 접근 가능.
     public ArrayList<ProductMenu> bugerArr;
 
     // 상품 메뉴 보여주기
+    @Override
     public void detailMenu(){
         bugerArr = new ArrayList<>();
         bugerArr.add(new ProductMenu("마라로드 새우", 5.4, "새우살 가득한 오리지널 새우패티에 이색적인 사천풍 마라 소스를 결합한 차별성 있는 새우버거"));
@@ -27,6 +28,7 @@ public class Buger{
     }
 
     // 상품 메뉴를 선택했을 시
+    @Override
     public ProductMenu choiceProduct(int choiceDetailMenu){
         // 장바구니에 상품 메뉴를 추가함.
         System.out.println("\"" + bugerArr.get(choiceDetailMenu-1).name + " | Won " + bugerArr.get(choiceDetailMenu-1).price + " | "
