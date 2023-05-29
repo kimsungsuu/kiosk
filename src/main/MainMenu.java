@@ -95,7 +95,7 @@ public class MainMenu {
                         // 선택한 상품 추가
                         addProductCnt++;
                         orderList.addProduct(choiceProduct, addProductCnt);
-                    } // 메뉴 1번 선택
+                    } // case 1 end
                     break;
                 case 2:
                     Dessert dessert = new Dessert();
@@ -127,7 +127,7 @@ public class MainMenu {
                         // 선택한 상품 추가
                         addProductCnt++;
                         orderList.addProduct(choiceProduct, addProductCnt);
-                    } // 메뉴 2번 선택
+                    } // case 2 end
                     break;
                 case 3:
                     Drinks drinks = new Drinks();
@@ -159,7 +159,7 @@ public class MainMenu {
                         // 선택한 상품 추가
                         addProductCnt++;
                         orderList.addProduct(choiceProduct, addProductCnt);
-                    } // 메뉴 3번 선택
+                    } // case 3 end
                     break;
                 case 4:
                     Chicken chicken = new Chicken();
@@ -191,7 +191,7 @@ public class MainMenu {
                         // 선택한 상품 추가
                         addProductCnt++;
                         orderList.addProduct(choiceProduct, addProductCnt);
-                    } // 메뉴 4번 선택
+                    } // case 4 end
                     break;
                 case 5: // 최종 주문
                     // 최종 주문 (나중에 5번 입력했을 시로 변경되어야함 임시적으로 테스트해보기 위해 선언)
@@ -203,6 +203,11 @@ public class MainMenu {
                     T.clearScreen();
 
                     if (order == 1) {
+                        // addProductCnt = 0 주문과 함께 장바구니를 초기화함.
+                        // 주문 했는데, 장바구니를 비우지 않으면, 다음 이용자에게 전 이용자가 사용한 장바구니 기록이 남게되어서
+                        // 예상치 못한 결과가 발생함.
+                        addProductCnt = 0;
+
                         orderList.clearOrder();
                         long delay = 3000;
                         totalOrderCnt++;
@@ -223,8 +228,8 @@ public class MainMenu {
 
                         T.clearScreen();
                     }
-                    break;
-                case 6:
+                    break; // case 5 end
+                case 6: // 주문 취소
                     System.out.println("진행하던 주문을 취소하시겠습니까?");
                     System.out.println("1. 확인      2. 취소");
                     // 진행하던 주문 확인(1) 또는 취소(2)
@@ -232,6 +237,8 @@ public class MainMenu {
                     if (orderCancel == 1) {
                         // 장바구니 비우기
                         orderList.clearOrder();
+                        // 진행하던 주문 취소 시 장바구니를 비워야 하므로 addProductCnt = 0
+                        addProductCnt = 0;
                         System.out.println("진행하던 주문이 취소되었습니다.");
                     }
                     System.out.println();
