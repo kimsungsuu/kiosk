@@ -176,7 +176,7 @@ public class MainMenu {
                     } // case chicken end
                     break;
                 case 5: // 최종 주문
-                    // 최종 주문 (나중에 5번 입력했을 시로 변경되어야함 임시적으로 테스트해보기 위해 선언)
+                    // 장바구니에 담긴 상품 목록 출력
                     orderList.orderProductList();
                     //최종적으로 주문할지 취소할지 결정
                     System.out.println();

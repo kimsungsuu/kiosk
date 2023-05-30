@@ -16,8 +16,6 @@ public class Buger extends AbstractProduct{
         bugerArr.add(new ProductMenu("불고기 버거", 4.7, "두툼한 쇠고기패티와 한국적인 맛의 소스가 잘 조화된 롯데리아 대표 버거"));
         bugerArr.add(new ProductMenu("모짜렐라 인 더 버거 베이컨", 7.4, "자연산 모짜렐라 치즈와 고소한 베이컨이 만나 풍부한 맛의 버거"));
 
-
-
         System.out.println("[ Bugers MENU ]");
         System.out.println("아래 상품 메뉴판을 보시고 상품을 골라 입력해주세요.");
 
