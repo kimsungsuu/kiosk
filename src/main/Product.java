@@ -4,9 +4,9 @@ package main;
  * 상세 메뉴들을 추상화하여 작업하기 위한 클래스
  */
 public class Product {
-    private AbstractProduct orderProduct;
+    private InterfaceProduct orderProduct;
 
-    public Product(AbstractProduct orderProduct){
+    public Product(InterfaceProduct orderProduct){
         this.orderProduct = orderProduct;
     }
 

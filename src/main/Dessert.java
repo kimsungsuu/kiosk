@@ -2,7 +2,7 @@ package main;
 
 import java.util.ArrayList;
 
-public class Dessert extends AbstractProduct{
+public class Dessert implements InterfaceProduct{
     public ArrayList<ProductMenu> dessertArr;
 
     public void detailMenu(){
