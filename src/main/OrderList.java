@@ -37,11 +37,12 @@ public class OrderList {
             System.out.println(orderLists.get(0).name + " | Won " + orderLists.get(0).price + " | " + productCnt.get(orderLists.get(0).name) + "개 | " + orderLists.get(0).description);
             total = orderLists.get(0).price;
 
+
             for (int i = 1; i < orderLists.size(); i++) {
                 boolean flag = true;
                 total += orderLists.get(i).price;
                 for (int j = i - 1; j >= 0; j--) {
-                    if (orderLists.get(i).name == orderLists.get(j).name) {
+                    if (orderLists.get(i).name.contains(orderLists.get(j).name)) {
                         flag = false;
                         break;
                     }
