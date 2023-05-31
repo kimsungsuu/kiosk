@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class KioskApp {
 
-    public static void start(Product product, int choiceDetailMenu, ProductMenu choiceProduct, int orderOrCancel, int addProductCnt, OrderList orderList){
+    public static int start(Product product, int choiceDetailMenu, ProductMenu choiceProduct, int orderOrCancel, int addProductCnt, OrderList orderList){
 
         Scanner in = new Scanner(System.in);
 
@@ -18,10 +18,25 @@ public class KioskApp {
         // 상세 상품 선택
         choiceDetailMenu = in.nextInt();
 
+
         clearScreen();
 
+        boolean flag = true;
+
         // 메뉴를 선택합니다.
-        choiceProduct = product.choiceProduct(choiceDetailMenu);
+        // 존재하지 않는 메뉴를 선택할 시에 다시 상품을 선택해야합니다.
+        while (flag) {
+            try {
+                choiceProduct = product.choiceProduct(choiceDetailMenu);
+                flag = false;
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("****존재하지 않는 상품입니다. 다시 선택해주세요****");
+                System.out.println();
+                product.detailMenu();
+                choiceDetailMenu = in.nextInt();
+                clearScreen();
+            }
+        }
 
         // 장바구니에 담을지 말지 결정합니다.
         // 1. 확인   2. 취소
@@ -37,6 +52,7 @@ public class KioskApp {
             orderList.addProduct(choiceProduct, addProductCnt);
         } // case Buger end
 
+        return addProductCnt;
     }
 
     public static void clearScreen() {

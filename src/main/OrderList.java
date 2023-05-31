@@ -42,7 +42,7 @@ public class OrderList {
                 boolean flag = true;
                 total += orderLists.get(i).price;
                 for (int j = i - 1; j >= 0; j--) {
-                    if (orderLists.get(i).name.contains(orderLists.get(j).name)) {
+                    if (orderLists.get(i).name == orderLists.get(j).name) {
                         flag = false;
                         break;
                     }
