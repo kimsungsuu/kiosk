@@ -28,7 +28,6 @@ public class Buger implements InterfaceProduct{
     // 상품 메뉴를 선택했을 시
     @Override
     public ProductMenu choiceProduct(int choiceDetailMenu){
-
         // 장바구니에 상품 메뉴를 추가함.
         System.out.println("\"" + bugerArr.get(choiceDetailMenu-1).name + " | Won " + bugerArr.get(choiceDetailMenu-1).price + " | "
                 + bugerArr.get(choiceDetailMenu-1).description + "\"");
@@ -40,6 +39,4 @@ public class Buger implements InterfaceProduct{
         // 상품 메뉴를 주문 리스트에 담기 위해 해당 상품을 반환하고, 반환된 값을 장바구니 객체에 담는다.
         return bugerArr.get(choiceDetailMenu-1);
     }
-
-
 }
