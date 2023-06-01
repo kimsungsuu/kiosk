@@ -1,5 +1,7 @@
 package main;
 
+import main.product.*;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -11,21 +13,6 @@ import java.util.Scanner;
 public class MainMenu {
     String name;
     String description;
-
-    // 상세 상품 선택
-//    static int choiceDetailMenu;
-
-    // 상세 상품 장바구니에 담기 위해 선언
-//    static ProductMenu choiceProduct;
-
-    //장바구나 획인 or 취소
-//    static int orderOrCancel;
-
-    // 주문 횟수로 어떤 상품이 장바구니에 담기는지 파악
-//    static int addProductCnt;
-
-    // 장바구니 객체
-//    static OrderList orderList;
 
     public MainMenu() {
     }
@@ -46,51 +33,35 @@ public class MainMenu {
         menuMap.put(4, new Product(new Chicken()));
         menuMap.put(5, new Product(new Bear()));
 
-        // 가게 명 설정
-        // 메인 메뉴에 출력될 이름 설정 ex ) "name에 오신걸 환영합니다."
-        String menuName = "롯데리아";
-
-        // 상세 상품 선택
-        int choiceDetailMenu = 0;
-
-        // 상세 상품 장바구니에 담기 위해 선언
         ProductMenu choiceProduct = new ProductMenu();
 
-        //장바구나 획인 or 취소
-        int orderOrCancel = 0;
-
-        // 주문 상품을 담을 장바구니 역할인 orderList 인스턴스화
         OrderList orderList = new OrderList();
 
-        // 주문 횟수로 어떤 상품이 장바구니에 담기는지 파악
+        int choiceDetailMenu = 0;
+
+        int orderOrCancel = 0;
+
         int addProductCnt = 0;
 
-        // 총 Order 수(대기번호수)
         int totalOrderCnt = 0;
 
         while (true) {
-            // 메인 메뉴리스트를 출력합니다.
-            // 메인 메뉴가 변경될 때마다 MainMenu 클래스를 변경하지 않도록 클래스를 분리하여 결합도를 낮춥니다.
             MainMenuList mainMenuList = new MainMenuList();
-            mainMenuList.mainMenuList(menuName);
+            // 메인 화면
+            mainMenuList.mainMenuList();
 
-            // 메인 메뉴판 선택 버거, 디저트, 음료, 치킨 중...
             int choiceMenu = in.nextInt();
 
-            // 화면 전환 효과를 위해 공백을 입력합니다.
             clearScreen();
 
-            // 상세 메뉴를 추상화한 Product
-            // Product 객체를 통해 객체를 갈아끼워주기만 하면 됨.
             Product product = menuMap.get(choiceMenu);
 
             if (product != null) { // 상품 선택
                 addProductCnt = KioskApp.start(product, choiceDetailMenu, choiceProduct, orderOrCancel, addProductCnt, orderList);
-            } // 상품 선택 end
-            else if (choiceMenu == menuMap.size() + 1) { // 주문 Order
+            } else if (choiceMenu == menuMap.size() + 1) { // 주문 Order
                 // 장바구니에 담긴 상품 목록 출력
                 orderList.orderProductList();
-                //최종적으로 주문할지 취소할지 결정
+
                 System.out.println();
                 System.out.println("1. 주문      2. 메뉴판");
 
@@ -99,8 +70,6 @@ public class MainMenu {
                 clearScreen();
 
                 if (order == 1) {
-                    // addProductCnt = 0, 주문과 함께 장바구니를 초기화함.
-                    // 주문 했는데, 장바구니를 비우지 않으면, 다음 이용자에게 전 이용자가 사용한 장바구니 기록이 남게되어서 예상치 못한 결과가 발생
                     addProductCnt = 0;
 
                     orderList.clearOrder();
@@ -110,8 +79,7 @@ public class MainMenu {
                     // 전체 주문 수
                     afterOrder(totalOrderCnt);
                 }
-            } // Order end
-            else if (choiceMenu == menuMap.size() + 2) { // 주문 취소 Cancel
+            } else if (choiceMenu == menuMap.size() + 2) { // 주문 취소 Cancel
                 System.out.println("진행하던 주문을 취소하시겠습니까?");
                 System.out.println("1. 확인      2. 취소");
                 // 진행하던 주문 확인(1) 또는 취소(2)
@@ -119,7 +87,6 @@ public class MainMenu {
                 if (orderCancel == 1) {
                     // 장바구니 비우기
                     orderList.clearOrder();
-                    // 진행하던 주문 취소 시 장바구니를 비워야 하므로 addProductCnt = 0
                     addProductCnt = 0;
                     System.out.println("진행하던 주문이 취소되었습니다.");
                 }
@@ -143,7 +110,6 @@ public class MainMenu {
     }
 
     public static void afterOrder(int totalOrderCnt){
-
         int delay = 3000;
 
         System.out.println();

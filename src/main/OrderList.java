@@ -1,5 +1,7 @@
 package main;
 
+import main.product.ProductMenu;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,9 +36,8 @@ public class OrderList {
         // 장바구니 리스트 출력
         // 장바구니에 같은 상품을 여러개 담았을 때 갯수 증가하고, 중복되는 상품명 출력 x
         if(!orderLists.isEmpty()) {
-            System.out.println(orderLists.get(0).name + " | Won " + orderLists.get(0).price + " | " + productCnt.get(orderLists.get(0).name) + "개 | " + orderLists.get(0).description);
+            System.out.println(String.format("%-15s",orderLists.get(0).name) + " | Won " + orderLists.get(0).price + " | " + productCnt.get(orderLists.get(0).name) + "개 | " + orderLists.get(0).description);
             total = orderLists.get(0).price;
-
 
             for (int i = 1; i < orderLists.size(); i++) {
                 boolean flag = true;
@@ -48,7 +49,7 @@ public class OrderList {
                     }
                 }
                 if (flag) {
-                    System.out.println(orderLists.get(i).name + " | Won " + orderLists.get(i).price + " | " + productCnt.get(orderLists.get(i).name) + "개 | " + orderLists.get(i).description);
+                    System.out.println(String.format("%-15s",orderLists.get(i).name) + " | Won " + orderLists.get(i).price + " | " + productCnt.get(orderLists.get(i).name) + "개 | " + orderLists.get(i).description);
                 }
             }
         }

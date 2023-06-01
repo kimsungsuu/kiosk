@@ -1,5 +1,8 @@
 package main;
 
+import main.product.Product;
+import main.product.ProductMenu;
+
 import java.util.Scanner;
 
 public class KioskApp {
@@ -16,8 +19,8 @@ public class KioskApp {
         product.detailMenu();
 
         // 상세 상품 선택
-        choiceDetailMenu = in.nextInt();
 
+        choiceDetailMenu = in.nextInt();
 
         clearScreen();
 
@@ -29,7 +32,7 @@ public class KioskApp {
             try {
                 choiceProduct = product.choiceProduct(choiceDetailMenu);
                 flag = false;
-            } catch (IndexOutOfBoundsException e) {
+            } catch (Exception e) {
                 System.out.println("****존재하지 않는 상품입니다. 다시 선택해주세요****");
                 System.out.println();
                 product.detailMenu();

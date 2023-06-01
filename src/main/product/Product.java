@@ -1,4 +1,7 @@
-package main;
+package main.product;
+
+import main.product.InterfaceProduct;
+import main.product.ProductMenu;
 
 /**
  * 상세 메뉴들을 추상화하여 작업하기 위한 클래스

@@ -1,10 +1,9 @@
 package test;
 
 
-import main.Buger;
-import main.Chicken;
+import main.product.Chicken;
 import main.OrderList;
-import main.ProductMenu;
+import main.product.ProductMenu;
 
 import java.util.Scanner;
 

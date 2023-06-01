@@ -1,9 +1,7 @@
 package test;
 
 import main.OrderList;
-import main.ProductMenu;
-
-import java.util.ArrayList;
+import main.product.ProductMenu;
 
 /**
  * 장바구니 기능을 테스트합니다.

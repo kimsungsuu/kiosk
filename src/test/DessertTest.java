@@ -1,9 +1,8 @@
 package test;
 
-import main.Buger;
-import main.Dessert;
+import main.product.Dessert;
 import main.OrderList;
-import main.ProductMenu;
+import main.product.ProductMenu;
 
 import java.util.Scanner;
 
