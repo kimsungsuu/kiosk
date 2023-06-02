@@ -52,6 +52,5 @@ public class ProductService {
             System.out.print((i+1) + ". " + options.get(i) + "      ");
         }
         System.out.println();
-
     }
 }

@@ -45,10 +45,10 @@ public class Drinks implements InterfaceProduct {
 
         int choiceOption = in.nextInt();
 
-        setProductPrice(choiceOption, choiceDetailMenu);
+        setProductOption(choiceOption, choiceDetailMenu);
     }
 
-    public void setProductPrice(int choiceOption, int choiceDetailMenu){
+    public void setProductOption(int choiceOption, int choiceDetailMenu){
 
         int key = choiceDetailMenu - 1;
 
