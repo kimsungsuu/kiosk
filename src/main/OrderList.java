@@ -15,7 +15,7 @@ public class OrderList {
     // 제품 주문 수량
     public Map<String, Integer> productCnt = new HashMap<>();
 
-    // 주문 확인 버튼 클릭 시 장바구니에 값을 담는다.
+    // 장바구니에 상품 담기
     public void addProduct(ProductMenu productMenu, int addProductCnt){
         orderLists.add(productMenu);
 
@@ -34,7 +34,6 @@ public class OrderList {
         System.out.println("[ Orders ]");
 
         // 장바구니 리스트 출력
-        // 장바구니에 같은 상품을 여러개 담았을 때 갯수 증가하고, 중복되는 상품명 출력 x
         if(!orderLists.isEmpty()) {
             System.out.println(String.format("%-15s",orderLists.get(0).name) + " | Won " + orderLists.get(0).price + " | " + productCnt.get(orderLists.get(0).name) + "개 | " + orderLists.get(0).description);
             total = orderLists.get(0).price;
@@ -62,8 +61,7 @@ public class OrderList {
         System.out.println();
     }
 
-    // 주문 완료 시 장바구니에 담겨있던 객체 clear()
-    // 제품 주문 수량도 초기화
+    // 장바구니, 주문 갯수 clear()
     public void clearOrder(){
         orderLists.clear();
         productCnt.clear();

@@ -22,4 +22,8 @@ public class Product {
         result = orderProduct.choiceProduct(choiceDetailMenu);
         return result;
     }
+
+    public void choiceOption(int choiceDetailMenu){
+        orderProduct.choiceOption(choiceDetailMenu);
+    }
 }

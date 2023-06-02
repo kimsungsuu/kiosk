@@ -1,6 +1,8 @@
 package main.product;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Product 객체 내부 공통 로직
@@ -25,7 +27,6 @@ public class ProductService {
     // 상품 메뉴를 선택했을 시
     public static ProductMenu choiceProductPrint(ArrayList<ProductMenu> object, int choiceDetailMenu){
 
-        // 장바구니에 상품 메뉴를 추가함.
         System.out.println("\"" + object.get(choiceDetailMenu-1).name + " | Won " + object.get(choiceDetailMenu-1).price + " | "
                 + object.get(choiceDetailMenu-1).description + "\"");
         System.out.println();
@@ -33,7 +34,24 @@ public class ProductService {
         System.out.println();
         System.out.println("1. 확인         2. 취소");
 
-        // 상품 메뉴를 주문 리스트에 담기 위해 해당 상품을 반환하고, 반환된 값을 장바구니 객체에 담는다.
         return object.get(choiceDetailMenu-1);
+    }
+
+    public static void choiceOptionPrint(ArrayList<ProductMenu> object, Map<Integer, ProductOption> objectMap, int key){
+
+        ProductOption productOption = objectMap.get(key);
+
+        List<String> options =  productOption.getOptions();
+
+        System.out.println("\"" + object.get(key).name + " | Won " + object.get(key).price + " | "
+                + object.get(key).description + "\"");
+
+        System.out.println("위 메뉴의 어떤 옵션으로 추가하시겠습니까?");
+
+        for (int i = 0; i < options.size(); i++){
+            System.out.print((i+1) + ". " + options.get(i) + "      ");
+        }
+        System.out.println();
+
     }
 }

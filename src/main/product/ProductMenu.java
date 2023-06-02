@@ -12,5 +12,10 @@ public class ProductMenu{
         this.description = description;
     }
 
+    public ProductMenu(double price, String description){
+        this.price = price;
+        this.description = description;
+    }
+
     public ProductMenu(){};
 }

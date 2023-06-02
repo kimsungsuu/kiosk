@@ -21,4 +21,8 @@ public class Dessert implements InterfaceProduct {
         return ProductService.choiceProductPrint(dessertArr, choiceDetailMenu);
     }
 
+    public void choiceOption(int choiceDetailMenu){
+
+    }
+
 }
